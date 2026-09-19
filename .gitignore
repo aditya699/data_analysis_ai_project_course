@@ -219,3 +219,6 @@ __marimo__/
 
 # Video files
 *.mp4
+
+# Office temp files
+~$*
