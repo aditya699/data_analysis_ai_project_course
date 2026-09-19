@@ -1,0 +1,401 @@
+product_id,product_name,category,unit_price
+SKU0001,Sunscreen Pro,Beauty,3320.05
+SKU0002,Comic Max,Books,1126.29
+SKU0003,Lipstick Pro,Beauty,4299.52
+SKU0004,Dumbbell Set Lite,Sports,10806.18
+SKU0005,Tracksuit Smart,Sports,11855.18
+SKU0006,Lipstick Smart,Beauty,398.41
+SKU0007,Face Wash Pro,Beauty,4105.79
+SKU0008,Novel Smart,Books,125.44
+SKU0009,Journal Smart,Books,689.0
+SKU0010,Bedsheet Pro,Home & Kitchen,17300.81
+SKU0011,Cookware Set Classic,Home & Kitchen,10078.3
+SKU0012,Kurta Premium,Fashion,2525.0
+SKU0013,Cookware Set Pro,Home & Kitchen,1847.19
+SKU0014,Speaker Lite,electronics,71018.83
+SKU0015,Tracksuit Classic,Sports,18454.76
+SKU0016,Sunscreen Premium,Beauty,2991.37
+SKU0017,Kurta Max,Fashion,3128.01
+SKU0018,Football Classic,Sports,827.75
+SKU0019,Handbag Pro,Fashion,6383.77
+SKU0020,Cookbook Smart,books,992.03
+SKU0021,Jacket Max,Fashion,4388.87
+SKU0022,Smartwatch Pro,electronics,12919.83
+SKU0023,Lamp Classic,Home & Kitchen,13145.67
+SKU0024,Handbag Lite,Fashion,6707.15
+SKU0025,Cookbook Classic,Books,393.57
+SKU0026,Sunscreen Max,Beauty,282.29
+SKU0027,Jeans Max,fashion,4479.0
+SKU0028,Biography Lite,Books,429.61
+SKU0029,Yoga Mat Classic,sports,4676.47
+SKU0030,Sneakers Classic,Fashion,830.43
+SKU0031,Tracksuit Pro,Sports,0
+SKU0032,Tracksuit Ultra,Sports,14749.99
+SKU0033,Novel Essential,Books,1405.03
+SKU0034,Air Fryer Premium,Home & Kitchen,20675.57
+SKU0035,Lamp Lite,home & kitchen,6262.52
+SKU0036,Lamp Max,home & kitchen,8801.11
+SKU0037,Cycle Helmet Ultra,Sports,13424.62
+SKU0038,Comic Classic,Books,829.59
+SKU0039,Keyboard Max,Electronics,39999.26
+SKU0040,Football Lite,Sports,9241.75
+SKU0041,Keyboard Lite,Electronics,79061.69
+SKU0042,Power Bank Pro,Electronics,48449.5
+SKU0043,Sunscreen Ultra,Beauty,3238.55
+SKU0044,Football Pro,Sports,3295.23
+SKU0045,Sunscreen Pro,Beauty,987.13
+SKU0046,Face Wash Smart,Beauty,2771.31
+SKU0047,T-Shirt Smart,Fashion,6433.05
+SKU0048,Journal Pro,Books,1002.92
+SKU0049,Kurta Pro,Fashion,795.99
+SKU0050,Lamp Premium,Home & Kitchen,16145.79
+SKU0051,Mixer Pro,Home & Kitchen,5985.81
+SKU0052,Lipstick Max,Beauty,3460.33
+SKU0053,Lipstick Smart,Beauty,802.8
+SKU0054,Comic Premium,Books,953.95
+SKU0055,Handbag Essential,Fashion,4848.97
+SKU0056,Keyboard Max,Electronics,49047.87
+SKU0057,Journal Max,Books,1359.82
+SKU0058,Dumbbell Set Pro,sports,3932.03
+SKU0059,Vacuum Lite,Home & Kitchen,16964.66
+SKU0060,Cycle Helmet Smart,Sports,5622.97
+SKU0061,Power Bank Max,Electronics,0
+SKU0062,Lamp Pro,Home & Kitchen,11690.56
+SKU0063,Smartwatch Pro,electronics,76359.53
+SKU0064,Sunscreen Essential,Beauty,1268.93
+SKU0065,Bedsheet Max,Home & Kitchen,16776.54
+SKU0066,Air Fryer Pro,Home & Kitchen,12165.81
+SKU0067,Keyboard Essential,Electronics,59129.38
+SKU0068,Power Bank Ultra,Electronics,42291.49
+SKU0069,Jeans Premium,Fashion,5638.72
+SKU0070,Cookbook Premium,Books,138.79
+SKU0071,T-Shirt Premium,Fashion,1109.51
+SKU0072,Keyboard Max,Electronics,3698.71
+SKU0073,Tracksuit Classic,Sports,10729.22
+SKU0074,Perfume Max,Beauty,604.74
+SKU0075,Kurta Pro,Fashion,6213.35
+SKU0076,Comic Max,Books,218.72
+SKU0077,Biography Ultra,Books,454.26
+SKU0078,Racket Ultra,Sports,7454.59
+SKU0079,Vacuum Classic,Home & Kitchen,8190.15
+SKU0080,Cycle Helmet Essential,Sports,18597.01
+SKU0081,Handbag Pro,Fashion,6272.51
+SKU0082,Serum Smart,Beauty,1279.41
+SKU0083,Biography Smart,books,1461.75
+SKU0084,Speaker Max,Electronics,47112.65
+SKU0085,Journal Smart,Books,116.2
+SKU0086,Racket Lite,Sports,4835.4
+SKU0087,Lamp Classic,Home & Kitchen,17379.0
+SKU0088,Bedsheet Premium,Home & Kitchen,24070.91
+SKU0089,Headphones Lite,electronics,6481.96
+SKU0090,Sunscreen Smart,Beauty,4780.09
+SKU0091,Jacket Max,Fashion,3477.47
+SKU0092,Dumbbell Set Premium,Sports,19264.8
+SKU0093,Racket Premium,Sports,2314.04
+SKU0094,Cycle Helmet Classic,Sports,16458.08
+SKU0095,Lamp Premium,Home & Kitchen,440.13
+SKU0096,Lipstick Classic,beauty,4120.87
+SKU0097,Jeans Premium,Fashion,3277.93
+SKU0098,Jeans Lite,Fashion,6141.14
+SKU0099,Kurta Max,Fashion,1560.76
+SKU0100,Cookbook Smart,Books,911.72
+SKU0101,Novel Max,Books,1489.38
+SKU0102,Biography Max,Books,444.58
+SKU0103,Kurta Pro,Fashion,4806.58
+SKU0104,Yoga Mat Smart,Sports,6330.87
+SKU0105,Journal Max,Books,463.31
+SKU0106,Football Premium,Sports,4370.43
+SKU0107,Monitor Essential,Electronics,1540.99
+SKU0108,Journal Lite,Books,731.02
+SKU0109,Racket Ultra,Sports,1651.63
+SKU0110,Comic Smart,Books,739.13
+SKU0111,Jacket Classic,Fashion,4372.96
+SKU0112,Serum Pro,Beauty,2287.59
+SKU0113,Perfume Smart,Beauty,861.47
+SKU0114,Kurta Lite,Fashion,790.05
+SKU0115,Headphones Essential,Electronics,64556.81
+SKU0116,Textbook Classic,Books,453.11
+SKU0117,Shampoo Premium,Beauty,4754.52
+SKU0118,Shampoo Smart,Beauty,1074.25
+SKU0119,Smartwatch Premium,Electronics,8601.87
+SKU0120,Cycle Helmet Essential,Sports,3933.71
+SKU0121,Vacuum Classic,home & kitchen,10311.64
+SKU0122,Keyboard Max,Electronics,19289.12
+SKU0123,Mixer Ultra,Home & Kitchen,23316.97
+SKU0124,Jeans Lite,Fashion,1768.24
+SKU0125,Power Bank Pro,Electronics,64053.15
+SKU0126,Lamp Smart,home & kitchen,9776.04
+SKU0127,Speaker Pro,Electronics,42845.86
+SKU0128,Keyboard Smart,Electronics,46723.28
+SKU0129,Face Wash Classic,Beauty,4652.69
+SKU0130,Cookware Set Smart,Home & Kitchen,23340.86
+SKU0131,Monitor Lite,Electronics,0
+SKU0132,Journal Ultra,books,118.7
+SKU0133,Serum Lite,Beauty,550.67
+SKU0134,Power Bank Ultra,Electronics,72226.68
+SKU0135,Jeans Max,Fashion,1598.56
+SKU0136,Comic Smart,Books,1129.88
+SKU0137,Headphones Ultra,Electronics,72167.85
+SKU0138,Jacket Max,Fashion,6936.82
+SKU0139,Racket Max,Sports,14199.79
+SKU0140,Racket Smart,Sports,19137.55
+SKU0141,Lipstick Smart,Beauty,988.87
+SKU0142,Air Fryer Lite,Home & Kitchen,1789.01
+SKU0143,Textbook Pro,Books,608.02
+SKU0144,T-Shirt Lite,Fashion,6542.59
+SKU0145,Cookbook Max,Books,1116.11
+SKU0146,Power Bank Pro,Electronics,69793.51
+SKU0147,Lipstick Ultra,Beauty,3808.79
+SKU0148,Shampoo Lite,Beauty,2452.04
+SKU0149,Bedsheet Essential,Home & Kitchen,3783.24
+SKU0150,Shampoo Pro,Beauty,2575.05
+SKU0151,Tracksuit Max,Sports,7231.24
+SKU0152,Perfume Essential,Beauty,662.47
+SKU0153,Lipstick Pro,Beauty,4399.12
+SKU0154,Air Fryer Smart,Home & Kitchen,15540.5
+SKU0155,Comic Lite,Books,1065.71
+SKU0156,Face Wash Lite,Beauty,2839.63
+SKU0157,Dumbbell Set Max,Sports,10316.31
+SKU0158,Cookbook Essential,Books,1030.59
+SKU0159,Vacuum Max,Home & Kitchen,4136.6
+SKU0160,Textbook Max,books,286.08
+SKU0161,Tracksuit Lite,Sports,14748.89
+SKU0162,Sneakers Essential,Fashion,3509.7
+SKU0163,Air Fryer Ultra,home & kitchen,4938.63
+SKU0164,Perfume Smart,Beauty,3618.4
+SKU0165,Sneakers Lite,Fashion,3123.42
+SKU0166,Lipstick Ultra,Beauty,3889.99
+SKU0167,Cookware Set Premium,Home & Kitchen,23124.56
+SKU0168,Perfume Classic,Beauty,3423.27
+SKU0169,Power Bank Max,Electronics,89802.18
+SKU0170,Journal Smart,Books,667.53
+SKU0171,Lamp Classic,Home & Kitchen,12123.5
+SKU0172,Power Bank Classic,electronics,58032.9
+SKU0173,Monitor Pro,Electronics,21421.01
+SKU0174,Face Wash Lite,Beauty,4570.16
+SKU0175,Shampoo Premium,Beauty,845.14
+SKU0176,Textbook Pro,Books,595.61
+SKU0177,Speaker Pro,Electronics,7777.45
+SKU0178,Power Bank Premium,Electronics,6209.66
+SKU0179,Novel Ultra,Books,609.24
+SKU0180,Jeans Essential,Fashion,4869.58
+SKU0181,T-Shirt Premium,fashion,3480.35
+SKU0182,Cookbook Lite,Books,510.47
+SKU0183,Power Bank Classic,Electronics,87605.28
+SKU0184,Biography Pro,Books,1389.55
+SKU0185,Textbook Premium,Books,822.34
+SKU0186,Air Fryer Smart,Home & Kitchen,17976.72
+SKU0187,Smartwatch Pro,Electronics,71963.62
+SKU0188,Speaker Essential,Electronics,4832.76
+SKU0189,Textbook Classic,Books,130.35
+SKU0190,Cycle Helmet Premium,Sports,7944.07
+SKU0191,Lamp Smart,Home & Kitchen,18190.15
+SKU0192,Monitor Premium,electronics,29128.45
+SKU0193,Power Bank Essential,Electronics,41389.85
+SKU0194,Dumbbell Set Lite,Sports,7772.76
+SKU0195,Cycle Helmet Essential,Sports,16035.04
+SKU0196,Mixer Classic,Home & Kitchen,17952.26
+SKU0197,Perfume Premium,Beauty,1923.34
+SKU0198,Power Bank Pro,Electronics,64397.63
+SKU0199,Jeans Essential,Fashion,5045.51
+SKU0200,Bedsheet Smart,Home & Kitchen,22740.36
+SKU0201,Racket Lite,Sports,3473.34
+SKU0202,Lamp Max,Home & Kitchen,22529.79
+SKU0203,Yoga Mat Classic,Sports,19809.68
+SKU0204,Comic Essential,Books,158.47
+SKU0205,Comic Essential,Books,1008.7
+SKU0206,Perfume Max,Beauty,3121.8
+SKU0207,Tracksuit Essential,Sports,4756.58
+SKU0208,Mixer Lite,home & kitchen,12075.92
+SKU0209,Textbook Smart,Books,810.62
+SKU0210,Bedsheet Max,Home & Kitchen,6821.2
+SKU0211,Yoga Mat Ultra,Sports,6211.83
+SKU0212,Keyboard Pro,Electronics,23600.62
+SKU0213,Perfume Ultra,Beauty,830.65
+SKU0214,Textbook Max,Books,557.61
+SKU0215,Serum Max,Beauty,302.16
+SKU0216,Journal Max,Books,354.8
+SKU0217,Biography Ultra,books,914.97
+SKU0218,Handbag Classic,Fashion,4512.2
+SKU0219,Perfume Lite,beauty,2159.31
+SKU0220,Speaker Essential,Electronics,38888.74
+SKU0221,Keyboard Pro,Electronics,75990.81
+SKU0222,Football Max,Sports,11140.65
+SKU0223,Monitor Lite,Electronics,64646.05
+SKU0224,Bedsheet Max,Home & Kitchen,1035.53
+SKU0225,Vacuum Lite,Home & Kitchen,9361.53
+SKU0226,Novel Classic,Books,723.44
+SKU0227,Speaker Lite,Electronics,28730.95
+SKU0228,Football Essential,Sports,9644.69
+SKU0229,Cycle Helmet Pro,Sports,818.26
+SKU0230,Lamp Premium,Home & Kitchen,23219.82
+SKU0231,Headphones Premium,Electronics,30851.72
+SKU0232,Biography Max,Books,1134.25
+SKU0233,Sunscreen Max,Beauty,853.55
+SKU0234,Sneakers Classic,Fashion,1698.57
+SKU0235,Lipstick Essential,Beauty,4735.46
+SKU0236,Sneakers Classic,fashion,4374.83
+SKU0237,Air Fryer Smart,Home & Kitchen,18932.11
+SKU0238,Sneakers Smart,Fashion,6038.11
+SKU0239,Smartwatch Classic,Electronics,31824.23
+SKU0240,Jeans Pro,Fashion,6190.79
+SKU0241,Yoga Mat Essential,Sports,2125.37
+SKU0242,Dumbbell Set Ultra,Sports,19372.45
+SKU0243,Lamp Essential,Home & Kitchen,18253.58
+SKU0244,Face Wash Pro,beauty,600.34
+SKU0245,Speaker Lite,Electronics,19119.19
+SKU0246,Kurta Essential,fashion,6966.0
+SKU0247,Yoga Mat Pro,Sports,15659.28
+SKU0248,Perfume Premium,Beauty,2412.83
+SKU0249,Speaker Essential,Electronics,33200.7
+SKU0250,Journal Classic,Books,362.78
+SKU0251,Lamp Max,Home & Kitchen,22365.68
+SKU0252,Vacuum Pro,Home & Kitchen,11521.89
+SKU0253,Keyboard Pro,Electronics,54606.96
+SKU0254,Yoga Mat Premium,Sports,12531.54
+SKU0255,Jacket Essential,Fashion,5802.54
+SKU0256,Sneakers Max,Fashion,5174.92
+SKU0257,Smartwatch Pro,Electronics,33413.56
+SKU0258,Headphones Lite,Electronics,22251.73
+SKU0259,Lipstick Essential,Beauty,4634.34
+SKU0260,Racket Pro,Sports,18450.83
+SKU0261,Air Fryer Pro,home & kitchen,2425.33
+SKU0262,Yoga Mat Pro,Sports,13356.46
+SKU0263,Kurta Essential,Fashion,6308.18
+SKU0264,Kurta Premium,Fashion,2200.3
+SKU0265,Bedsheet Pro,home & kitchen,21135.03
+SKU0266,Vacuum Max,Home & Kitchen,5233.68
+SKU0267,Headphones Ultra,Electronics,60093.93
+SKU0268,Lamp Pro,Home & Kitchen,20452.82
+SKU0269,Dumbbell Set Classic,Sports,4847.15
+SKU0270,Bedsheet Classic,Home & Kitchen,6258.19
+SKU0271,Power Bank Premium,Electronics,39235.33
+SKU0272,Tracksuit Lite,Sports,17242.92
+SKU0273,Comic Ultra,Books,386.02
+SKU0274,Novel Premium,Books,210.99
+SKU0275,Face Wash Essential,Beauty,1453.74
+SKU0276,Speaker Ultra,Electronics,39400.64
+SKU0277,Headphones Essential,Electronics,31727.4
+SKU0278,Air Fryer Lite,Home & Kitchen,2676.75
+SKU0279,Dumbbell Set Premium,Sports,3857.34
+SKU0280,Jeans Pro,Fashion,6441.64
+SKU0281,Journal Lite,Books,306.05
+SKU0282,Power Bank Max,Electronics,9129.58
+SKU0283,Textbook Ultra,Books,367.82
+SKU0284,Serum Max,Beauty,3997.86
+SKU0285,Handbag Lite,Fashion,983.72
+SKU0286,Cookbook Essential,Books,941.16
+SKU0287,Racket Ultra,Sports,10106.68
+SKU0288,Yoga Mat Ultra,Sports,7667.91
+SKU0289,Kurta Essential,Fashion,4520.77
+SKU0290,Racket Ultra,Sports,18792.04
+SKU0291,Cookware Set Pro,Home & Kitchen,2689.14
+SKU0292,Lipstick Smart,Beauty,4358.77
+SKU0293,Handbag Smart,Fashion,3417.86
+SKU0294,Serum Lite,Beauty,1378.84
+SKU0295,Sneakers Max,Fashion,3704.38
+SKU0296,T-Shirt Max,Fashion,1032.55
+SKU0297,Kurta Max,Fashion,5243.27
+SKU0298,Cookware Set Smart,Home & Kitchen,1605.35
+SKU0299,Power Bank Classic,Electronics,31491.49
+SKU0300,Cookware Set Lite,Home & Kitchen,
+SKU0301,Tracksuit Pro,Sports,3991.29
+SKU0302,Mixer Classic,Home & Kitchen,2138.46
+SKU0303,Perfume Smart,Beauty,942.49
+SKU0304,Handbag Classic,Fashion,6889.57
+SKU0305,Dumbbell Set Max,sports,2661.15
+SKU0306,Face Wash Classic,Beauty,2253.4
+SKU0307,Novel Ultra,Books,1314.5
+SKU0308,Yoga Mat Max,Sports,14788.16
+SKU0309,Monitor Max,Electronics,85626.85
+SKU0310,Bedsheet Classic,Home & Kitchen,16227.37
+SKU0311,Speaker Classic,Electronics,6524.87
+SKU0312,Handbag Lite,Fashion,4602.61
+SKU0313,Biography Lite,Books,1255.6
+SKU0314,Perfume Classic,Beauty,950.48
+SKU0315,Novel Ultra,Books,1039.11
+SKU0316,Jacket Classic,fashion,2339.95
+SKU0317,Tracksuit Ultra,Sports,6683.34
+SKU0318,Bedsheet Smart,Home & Kitchen,5140.04
+SKU0319,Jacket Smart,Fashion,1355.33
+SKU0320,Cookware Set Premium,Home & Kitchen,13799.33
+SKU0321,Lamp Essential,Home & Kitchen,22787.03
+SKU0322,Smartwatch Premium,Electronics,29733.14
+SKU0323,Vacuum Max,Home & Kitchen,13627.15
+SKU0324,Novel Ultra,books,840.17
+SKU0325,Shampoo Classic,Beauty,2376.23
+SKU0326,Cycle Helmet Premium,Sports,7247.69
+SKU0327,Yoga Mat Max,Sports,15273.12
+SKU0328,Headphones Ultra,Electronics,20855.58
+SKU0329,Headphones Essential,Electronics,81038.15
+SKU0330,Textbook Lite,Books,1347.37
+SKU0331,Keyboard Smart,Electronics,68616.27
+SKU0332,Novel Lite,Books,238.87
+SKU0333,Journal Ultra,Books,940.55
+SKU0334,Speaker Lite,Electronics,13768.87
+SKU0335,Headphones Smart,Electronics,1150.54
+SKU0336,Tracksuit Smart,Sports,11110.39
+SKU0337,Keyboard Classic,Electronics,32706.07
+SKU0338,Kurta Pro,Fashion,6144.54
+SKU0339,Shampoo Max,Beauty,
+SKU0340,Jacket Lite,Fashion,0
+SKU0341,Kurta Ultra,Fashion,5461.98
+SKU0342,Shampoo Classic,Beauty,2928.1
+SKU0343,Air Fryer Lite,Home & Kitchen,17444.51
+SKU0344,Air Fryer Premium,Home & Kitchen,13169.65
+SKU0345,Jacket Max,Fashion,1305.84
+SKU0346,Journal Pro,Books,999.86
+SKU0347,Sunscreen Lite,Beauty,952.31
+SKU0348,T-Shirt Essential,Fashion,6477.12
+SKU0349,Serum Premium,Beauty,4922.51
+SKU0350,Serum Pro,Beauty,203.68
+SKU0351,Racket Premium,sports,5970.42
+SKU0352,Dumbbell Set Lite,Sports,10430.01
+SKU0353,Biography Ultra,Books,536.34
+SKU0354,Shampoo Smart,Beauty,2642.06
+SKU0355,Cookbook Classic,Books,1400.83
+SKU0356,Bedsheet Smart,home & kitchen,5973.84
+SKU0357,Face Wash Ultra,Beauty,2279.18
+SKU0358,Textbook Essential,books,1244.14
+SKU0359,T-Shirt Ultra,Fashion,4020.55
+SKU0360,Keyboard Classic,Electronics,64120.58
+SKU0361,Novel Max,Books,615.86
+SKU0362,Cookware Set Lite,Home & Kitchen,12180.65
+SKU0363,Cycle Helmet Smart,sports,5726.34
+SKU0364,Yoga Mat Essential,Sports,4714.2
+SKU0365,Handbag Ultra,Fashion,4482.77
+SKU0366,Air Fryer Smart,Home & Kitchen,2015.37
+SKU0367,Shampoo Premium,Beauty,4671.29
+SKU0368,Cycle Helmet Ultra,Sports,5800.58
+SKU0369,Comic Pro,Books,106.36
+SKU0370,Jacket Essential,Fashion,1412.5
+SKU0371,Novel Smart,Books,836.49
+SKU0372,Vacuum Ultra,Home & Kitchen,0
+SKU0373,Speaker Premium,Electronics,56750.17
+SKU0374,Mixer Ultra,Home & Kitchen,897.94
+SKU0375,Racket Ultra,sports,13902.04
+SKU0376,Face Wash Lite,Beauty,4364.26
+SKU0377,Dumbbell Set Ultra,Sports,9688.72
+SKU0378,Speaker Ultra,Electronics,75601.48
+SKU0379,Handbag Lite,Fashion,
+SKU0380,Bedsheet Smart,home & kitchen,13213.29
+SKU0381,Jacket Pro,Fashion,6729.12
+SKU0382,Comic Ultra,Books,966.11
+SKU0383,Handbag Max,fashion,5228.59
+SKU0384,Shampoo Pro,Beauty,3700.62
+SKU0385,Speaker Smart,electronics,62199.97
+SKU0386,Keyboard Pro,Electronics,48559.32
+SKU0387,Perfume Premium,Beauty,3415.57
+SKU0388,T-Shirt Classic,Fashion,863.55
+SKU0389,Serum Pro,Beauty,2322.02
+SKU0390,Sunscreen Essential,Beauty,4030.27
+SKU0391,Football Essential,Sports,19502.75
+SKU0392,Monitor Smart,Electronics,80952.93
+SKU0393,Power Bank Classic,Electronics,16288.7
+SKU0394,Shampoo Lite,Beauty,2208.11
+SKU0395,Tracksuit Lite,Sports,1674.68
+SKU0396,Vacuum Max,Home & Kitchen,15696.65
+SKU0397,Cookware Set Ultra,Home & Kitchen,10519.47
+SKU0398,Handbag Ultra,Fashion,3862.63
+SKU0399,Face Wash Pro,Beauty,1020.12
+SKU0400,Handbag Classic,Fashion,6469.35
