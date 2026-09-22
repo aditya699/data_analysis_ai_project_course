@@ -16,6 +16,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `lecture-8_Snowflake's_Drop_Zone` | Stages: Snowflake's drop zone | Slides + `lecture8.sql` |
 | `Lecture_9_copy_into_table` | COPY INTO: your first table | Slides + `lecture_09_end_state.sql` |
 | `Lecture_10_Loading_the_Other_Three _Tables` | Loading the other three tables | `lecture_10_end_state.sql` |
+| `Lecture11_Using_AI_to_Build_the_ER _Diagram` | Using AI to build the ER diagram | Slides + `lecture_11_end_state.sql` |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -33,7 +34,7 @@ Four intentionally messy CSVs in `lecture-4_.../datasets/` — inconsistent city
 ## Getting started
 
 1. Sign up for a [Snowflake trial account](https://signup.snowflake.com/) — no credit card needed, and the trial credits cover this course.
-2. Open a worksheet and run the end-state SQL files in order: Lecture 05, 06, 07, 08, 09, then 10. Each one builds on the last.
+2. Open a worksheet and run the end-state SQL files in order: Lecture 05, 06, 07, 08, 09, 10, then 11. Each one builds on the last.
 3. In Lecture 08, upload the four CSVs to the stage through the Snowsight UI (Catalog → `ORDERIQ_DB` → `RAW` → Stages → `ORDERIQ_STAGE` → **+ Files**) before running the `LIST` and `SELECT` queries.
 
 That sequence gives you:
@@ -47,6 +48,7 @@ That sequence gives you:
   - `RAW.CUSTOMERS` — 8,160 rows
   - `RAW.PRODUCTS` — 400 rows
   - `RAW.ORDER_ITEMS` — 123,963 rows
+- **An ER diagram of the RAW layer**: in Lecture 11 you pull the table structure from `INFORMATION_SCHEMA.COLUMNS`, add a few sample rows from each table, and give both to an AI. It returns a Mermaid ER diagram and SQL that checks the relationships. You run that SQL and judge whether the AI got it right.
 
 Run the SQL yourself rather than pasting it wholesale — the comments in each file explain *why* every option is set the way it is.
 
@@ -60,6 +62,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 8 — Stages: Snowflake's drop zone
 - [x] Lecture 9 — COPY INTO: your first table
 - [x] Lecture 10 — Loading the other three tables
+- [x] Lecture 11 — Using AI to build the ER diagram
 
 ## License
 
