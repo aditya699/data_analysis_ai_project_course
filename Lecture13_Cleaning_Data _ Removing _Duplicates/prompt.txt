@@ -1,0 +1,1 @@
+In Snowflake DB ORDERIQ_DB: find duplicates in all 4 RAW tables (CUSTOMERS, PRODUCTS, ORDERS, ORDER_ITEMS), remove them, and create one view per table in the STAGING schema named STG_<TABLE>. Don't modify RAW. Show me the before/after row counts.
