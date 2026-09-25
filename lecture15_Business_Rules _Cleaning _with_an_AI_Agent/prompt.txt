@@ -1,0 +1,26 @@
+TASK
+Finish cleaning the STAGING views in my Snowflake database.
+
+CONTEXT
+- Database ORDERIQ_DB. RAW holds the loaded CSVs, all VARCHAR, never to be modified.
+- STAGING views STG_CUSTOMERS, STG_PRODUCTS, STG_ORDERS, STG_ORDER_ITEMS already
+  dedupe RAW and convert dates. Keep all of that and add the rules below.
+
+BUSINESS RULES TO APPLY
+1. Cities: standardise spelling and case. Delhi / delhi / DELHI / New Delhi -> 'Delhi'.
+   Bombay -> 'Mumbai'. BLR / Bengaluru -> 'Bangalore'. Trim whitespace.
+   Blank, 'NA' and 'null' -> NULL.
+2. Status: uppercase everything. COMPLETED / completed -> 'COMPLETED'.
+3. Quantities: negative quantity means a return. Keep the row, but add a boolean
+   column IS_RETURN, and add ABS_QUANTITY as the absolute value.
+   Do not delete returns - we need the return rate later.
+4. Prices: cast to NUMBER(10,2). Blank or 0 unit_price -> NULL, not zero.
+5. Categories: title case, so 'beauty' and 'Beauty' become 'Beauty'.
+6. Add LINE_REVENUE to STG_ORDER_ITEMS = quantity * unit_price * (1 - discount_pct/100).
+
+VERIFICATION
+- Distinct city values before and after, with row counts.
+- Distinct status and category values after.
+- Count of rows where IS_RETURN is true, and the return rate as a percentage.
+- Count of NULL unit_price rows.
+- 5 sample rows from STG_ORDER_ITEMS showing LINE_REVENUE.
