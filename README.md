@@ -21,6 +21,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `Lecture13_Cleaning_Data _ Removing _Duplicates` | Cleaning data: removing duplicates | Slides + `prompt.txt` (AI prompt) + `lecture13.sql` |
 | `lecture14_Fixing_the_Dates` | Fixing the dates | Slides + `lecture_14_prompt.txt` (AI prompt) + `lecture14.sql` |
 | `lecture15_Business_Rules _Cleaning _with_an_AI_Agent` | Business-rules cleaning with an AI agent | Slides + `prompt.txt` (AI prompt) + `lecture15.sql` |
+| `Lecture16_Fixing_Agent_Slop` | Fixing agent slop | `lecture15_ai_slop_fixed.sql` |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -40,7 +41,7 @@ Four intentionally messy CSVs in `lecture-4_.../datasets/` — inconsistent city
 1. Sign up for a [Snowflake trial account](https://signup.snowflake.com/) — no credit card needed, and the trial credits cover this course.
 2. Open a worksheet and run the end-state SQL files in order: Lecture 05, 06, 07, 08, 09, 10, 11, then 12. Each one builds on the last.
 3. In Lecture 08, upload the four CSVs to the stage through the Snowsight UI (Catalog → `ORDERIQ_DB` → `RAW` → Stages → `ORDERIQ_STAGE` → **+ Files**) before running the `LIST` and `SELECT` queries.
-4. From Lecture 13 on, the cleanup is done with AI. Give it each lecture's prompt file in order (13, 14, then 15) and let it write and run the SQL. The `lecture13.sql`, `lecture14.sql` and `lecture15.sql` files hold the SQL the AI produced, so you can compare your results or run them directly.
+4. From Lecture 13 on, the cleanup is done with AI. Give it each lecture's prompt file in order (13, 14, then 15) and let it write and run the SQL. The `lecture13.sql`, `lecture14.sql` and `lecture15.sql` files hold the SQL the AI produced, so you can compare your results or run them directly. In Lecture 16 you review the Lecture 15 output and fix what the AI got wrong; `lecture15_ai_slop_fixed.sql` is the corrected version.
 
 That sequence gives you:
 
@@ -62,6 +63,7 @@ That sequence gives you:
   - Order status is uppercased and product categories are title-cased.
   - Prices become `NUMBER(10,2)`, and blank or zero prices become `NULL`.
   - `STG_ORDER_ITEMS` gets three new columns: `IS_RETURN` (true when the quantity is negative), `ABS_QUANTITY` and `LINE_REVENUE`. Returns are kept so the return rate can be calculated later.
+- **Reviewing the AI's work**: Lecture 16 checks the Lecture 15 SQL against the prompt and fixes what the AI got wrong. The AI had used `ABS(quantity)` in `LINE_REVENUE`, which counted returns as sales. The fixed version uses the signed quantity, so returns come out negative and `SUM(LINE_REVENUE)` is net revenue.
 
 Run the SQL yourself rather than pasting it wholesale — the comments in each file explain *why* every option is set the way it is.
 
@@ -80,6 +82,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 13 — Cleaning data: removing duplicates
 - [x] Lecture 14 — Fixing the dates
 - [x] Lecture 15 — Business-rules cleaning with an AI agent
+- [x] Lecture 16 — Fixing agent slop
 
 ## License
 
