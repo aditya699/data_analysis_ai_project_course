@@ -1,0 +1,22 @@
+TASK
+Convert the text date columns in my Snowflake STAGING views into real DATE columns.
+
+CONTEXT
+- Database ORDERIQ_DB.
+- RAW holds the loaded CSVs, every column VARCHAR.
+- STAGING holds views that dedupe RAW: STG_CUSTOMERS, STG_PRODUCTS, STG_ORDERS, STG_ORDER_ITEMS.
+- Date columns to fix: STG_ORDERS.ORDER_DATE and STG_CUSTOMERS.SIGNUP_DATE.
+- Update the existing views. Keep the dedupe logic exactly as it is.
+- Never modify anything in RAW.
+- A row that cannot be parsed must become NULL, not fail the query.
+
+EXAMPLES - the four formats present in the data
+  2025-06-05
+  17/12/2024
+  Jun 05 2025
+  2025/06/05
+
+VERIFICATION
+- Report how many rows failed to convert (date is NULL but the source text is not).
+- Show min and max date per column. Expected range: 2024-01-01 to 2025-12-31.
+- Show 5 sample rows with the original text beside the converted date.
