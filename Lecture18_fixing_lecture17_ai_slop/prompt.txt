@@ -1,0 +1,24 @@
+TASK
+Fix revenue in ORDERIQ_DB.ANALYTICS.FACT_ORDER_ITEMS so cancelled and pending
+orders don't count as revenue.
+
+THE BUG
+FACT_ORDER_ITEMS copies LINE_REVENUE straight from staging without looking at
+order status. CANCELLED and PENDING lines therefore carry full revenue, so
+SUM(LINE_REVENUE) overstates real money.
+
+THE RULE
+STATUS has exactly these values: COMPLETED, RETURNED, CANCELLED, PENDING.
+  COMPLETED  -> counts as revenue
+  RETURNED   -> counts, and is already negative
+  CANCELLED  -> must NOT count. The sale never happened.
+  PENDING    -> must NOT count. The money isn't in yet.
+Keep all rows in the fact table - we still need to count and analyse them.
+Keep LINE_REVENUE as it is. Add a new column NET_REVENUE that applies the rule,
+so the business rule is visible rather than hidden inside an existing column.
+
+VERIFICATION
+- Confirm STATUS has only those four values, with row counts for each.
+- SUM(LINE_REVENUE) vs SUM(NET_REVENUE), and the difference between them.
+- NET_REVENUE broken down by STATUS: cancelled and pending must total zero.
+- Row count must be unchanged.

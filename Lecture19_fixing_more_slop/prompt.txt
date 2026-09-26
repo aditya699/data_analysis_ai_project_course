@@ -1,0 +1,1 @@
+hey i checked with business and u rightly pointed that status is not proper so lets use simply logic quanity as the main dirver if it is negative so be if it opositive be it hence we should reomve all filters on statuts coloiumn

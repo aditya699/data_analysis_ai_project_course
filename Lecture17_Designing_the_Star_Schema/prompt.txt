@@ -1,0 +1,33 @@
+TASK
+Build the ANALYTICS star schema shown in the attached diagram.
+
+DESTINATION
+Create everything in ORDERIQ_DB.ANALYTICS, as tables, with these exact names:
+  ORDERIQ_DB.ANALYTICS.DIM_DATE
+  ORDERIQ_DB.ANALYTICS.DIM_CUSTOMER
+  ORDERIQ_DB.ANALYTICS.DIM_PRODUCT
+  ORDERIQ_DB.ANALYTICS.FACT_ORDER_ITEMS
+Use CREATE OR REPLACE TABLE so the script can be re-run.
+Read only from ORDERIQ_DB.STAGING. Do not touch RAW or STAGING.
+
+CONTEXT
+- Source: the cleaned views STG_CUSTOMERS, STG_PRODUCTS, STG_ORDERS, STG_ORDER_ITEMS.
+- Grain of FACT_ORDER_ITEMS: one row per order line.
+- LINE_REVENUE is already signed in staging - returns are negative. Keep it that way.
+
+WHAT TO BUILD
+1. DIM_DATE - one row per calendar day covering the full order-date range.
+   Columns: date_key, full_date, day, month, month_name, quarter, year,
+   day_of_week, day_name, is_weekend.
+2. DIM_CUSTOMER - one row per customer, with a surrogate key.
+3. DIM_PRODUCT - one row per product, with a surrogate key.
+4. FACT_ORDER_ITEMS - one row per order line, holding the foreign keys to the
+   three dimensions, plus quantity, unit_price, discount_pct, line_revenue,
+   is_return, and the order status and channel.
+
+VERIFICATION
+- Row count of FACT_ORDER_ITEMS must equal STG_ORDER_ITEMS.
+- Zero orphan rows: every FK in the fact must exist in its dimension.
+- SUM(line_revenue) in the fact must equal SUM(line_revenue) in staging.
+- Every surrogate key is unique and never null.
+- DIM_DATE has no missing days across the range.
