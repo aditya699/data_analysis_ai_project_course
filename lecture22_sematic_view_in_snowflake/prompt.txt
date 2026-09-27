@@ -1,0 +1,82 @@
+TASK
+Create a Snowflake semantic view over the OrderIQ star schema, using the business
+rules below exactly as written. Do not invent any rule that is not listed.
+
+DESTINATION
+ORDERIQ_DB.ANALYTICS.ORDERIQ_SV
+Use CREATE OR REPLACE SEMANTIC VIEW (SQL DDL, not YAML).
+
+CONTEXT
+- Source tables (read only, do not modify):
+  ORDERIQ_DB.ANALYTICS.FACT_ORDER_ITEMS  (one row per order line)
+  ORDERIQ_DB.ANALYTICS.DIM_CUSTOMER
+  ORDERIQ_DB.ANALYTICS.DIM_PRODUCT
+  ORDERIQ_DB.ANALYTICS.DIM_DATE
+- LINE_REVENUE is already signed: returns are negative.
+- Order data ends on 2025-12-31.
+- BEFORE writing the view, run and show me:
+    DESC TABLE on all four tables
+    SELECT DISTINCT status FROM FACT_ORDER_ITEMS
+    SELECT DISTINCT channel FROM FACT_ORDER_ITEMS
+    SELECT DISTINCT category FROM DIM_PRODUCT
+    SELECT DISTINCT city FROM DIM_CUSTOMER
+  Use the real column names and values you find. If a column needed by a rule
+  does not exist, STOP and tell me instead of guessing.
+
+WHAT GOES INSIDE THE VIEW
+1. TABLES
+   The 4 tables above, each with its PRIMARY KEY, a COMMENT, and WITH SYNONYMS.
+   Example: FACT_ORDER_ITEMS synonyms ('sales', 'order lines', 'transactions').
+
+2. RELATIONSHIPS
+   fact -> DIM_CUSTOMER, fact -> DIM_PRODUCT, fact -> DIM_DATE. Name each one.
+
+3. FACTS (row-level numbers)
+   quantity, unit_price, line_revenue, is_return. Each with a COMMENT.
+
+4. DIMENSIONS (what we group and filter by)
+   city, category, channel, status, order date, month, quarter, year.
+   Each with a COMMENT and synonyms where useful (e.g. city: 'location', 'town').
+   For status, channel and category: add SAMPLE_VALUES using the real distinct
+   values you found, then IS_ENUM (the list is complete).
+   For city: add SAMPLE_VALUES with 3-5 real values, no IS_ENUM.
+
+5. METRICS (course rules - encode exactly)
+   total_revenue    = SUM(line_revenue) for lines whose status is NOT cancelled
+                      and NOT pending. Returns stay negative, so they subtract.
+                      Synonyms: 'revenue', 'sales', 'net sales'.
+   order_count      = COUNT(DISTINCT order id) for orders NOT cancelled and
+                      NOT pending. Synonyms: 'orders', 'number of orders'.
+   return_rate      = return lines / all lines, by LINE COUNT, where a return is
+                      IS_RETURN = TRUE. Cancelled and pending lines excluded.
+   active_customers = COUNT(DISTINCT customer) with at least one order NOT
+                      cancelled and NOT pending. Synonyms: 'customers', 'buyers'.
+   Every metric gets a COMMENT stating its rule in plain English.
+
+6. DERIVED METRIC
+   avg_order_value  = total_revenue / order_count, using DIV0.
+                      Synonyms: 'AOV', 'average basket'.
+
+7. AI INSTRUCTIONS
+   AI_SQL_GENERATION: 'Order data ends on 2025-12-31. Interpret relative time
+   phrases like last month, last quarter or this year relative to the latest
+   order date in the data, never relative to the current date.'
+   AI_QUESTION_CATEGORIZATION: 'If a question asks about dates after
+   2025-12-31, reply that OrderIQ data ends on 2025-12-31.'
+
+8. VIEW COMMENT
+   'OrderIQ sales semantic view. Course business rules for revenue, orders,
+   returns and customers.'
+
+Do NOT add verified queries. That is the next lecture.
+
+VERIFICATION
+For EACH of the 5 metrics:
+- Query it through SEMANTIC_VIEW(ORDERIQ_DB.ANALYTICS.ORDERIQ_SV METRICS ...).
+- Compute the same number with plain SQL directly on FACT_ORDER_ITEMS.
+- Show both numbers side by side. They must match exactly.
+Also:
+- Show total_revenue by year through the semantic view vs plain SQL. Must match.
+- Run DESCRIBE SEMANTIC VIEW ORDERIQ_DB.ANALYTICS.ORDERIQ_SV and confirm every
+  table, dimension, fact and metric has a comment.
+- List any assumption you made that is not written in this prompt.

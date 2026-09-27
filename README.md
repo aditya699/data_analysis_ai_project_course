@@ -27,6 +27,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `Lecture19_fixing_more_slop` | Fixing more slop | `prompt.txt` (AI prompt) + `lecture18.sql` (status check) + `lecture17_fixed_code.sql` (final star schema) |
 | `lecture_20_revision` | Revision | Slides |
 | `lecture21_sematic_view` | What a semantic view is | Slides |
+| `lecture22_sematic_view_in_snowflake` | Building the semantic view in Snowflake | Slides + `prompt.txt` (AI prompt) |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -76,6 +77,12 @@ That sequence gives you:
 
   The script ends with checks that the row count and revenue match staging, that every key is unique and has a matching dimension row, and that `DIM_DATE` has no missing days.
 - **A `NET_REVENUE` column, and what happened to it** (Lectures 18–19): Lecture 18's prompt tries to leave cancelled and pending orders out of revenue by looking at order status. The check in `lecture18.sql` shows that status doesn't line up with the quantities, so it can't be trusted. The business then agrees on a simpler rule: the sign of the quantity decides whether a line is a sale (positive) or a return (negative), and status is ignored.
+- **A semantic view `ANALYTICS.ORDERIQ_SV`** (Lecture 22), built by AI from `prompt.txt`. It sits on top of the star schema and describes it in business terms, so AI tools can answer questions from it:
+  - The four tables, the three relationships between them, and facts, dimensions and metrics, each with a plain-English comment and alternative names (for example, "sales" for revenue).
+  - Metrics for total revenue, order count, return rate, active customers and average order value.
+  - Instructions telling AI tools that the data ends on 2025-12-31, so "last month" means relative to that date.
+
+  The AI checks each metric against plain SQL on the fact table, and the two numbers must match.
 
 Run the SQL yourself rather than pasting it wholesale — the comments in each file explain *why* every option is set the way it is.
 
@@ -100,6 +107,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 19 — Fixing more slop
 - [x] Lecture 20 — Revision
 - [x] Lecture 21 — What a semantic view is
+- [x] Lecture 22 — Building the semantic view in Snowflake
 
 ## License
 
