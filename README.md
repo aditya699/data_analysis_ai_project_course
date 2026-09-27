@@ -26,6 +26,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `Lecture18_fixing_lecture17_ai_slop` | Fixing Lecture 17's AI slop | `prompt.txt` (AI prompt) |
 | `Lecture19_fixing_more_slop` | Fixing more slop | `prompt.txt` (AI prompt) + `lecture18.sql` (status check) + `lecture17_fixed_code.sql` (final star schema) |
 | `lecture_20_revision` | Revision | Slides |
+| `lecture21_sematic_view` | What a semantic view is | Slides |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -98,6 +99,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 18 — Fixing Lecture 17's AI slop
 - [x] Lecture 19 — Fixing more slop
 - [x] Lecture 20 — Revision
+- [x] Lecture 21 — What a semantic view is
 
 ## License
 
