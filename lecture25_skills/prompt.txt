@@ -1,0 +1,3 @@
+/ai-readiness-score
+
+My warehouse is ORDERIQ_WH.
