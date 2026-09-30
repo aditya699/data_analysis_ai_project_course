@@ -30,6 +30,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `lecture22_sematic_view_in_snowflake` | Building the semantic view in Snowflake | Slides + `prompt.txt` (AI prompt) + `lecture22.sql` |
 | `lecture25_skills` | What a skill is | Slides + `SKILL.md` (example `sql-review` skill) + `prompt.txt` (example skill call) |
 | `Lecture27_generative_ai_introduction` | What generative AI is | Slides |
+| `lecture28_GenAI Vocabulary` | Generative AI vocabulary | Slides |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -114,6 +115,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 24 — Verified queries (video only)
 - [x] Lecture 25 — What a skill is
 - [x] Lecture 27 — What generative AI is
+- [x] Lecture 28 — Generative AI vocabulary
 
 ## License
 
