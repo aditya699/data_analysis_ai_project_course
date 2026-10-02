@@ -31,6 +31,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `lecture25_skills` | What a skill is | Slides + `SKILL.md` (example `sql-review` skill) + `prompt.txt` (example skill call) |
 | `Lecture27_generative_ai_introduction` | What generative AI is | Slides |
 | `lecture28_GenAI Vocabulary` | Generative AI vocabulary | Slides |
+| `lecture29_Your_First API_Call` | Your first API call | `app.py` (short-story script) + `requirements.txt` |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -87,6 +88,8 @@ That sequence gives you:
 
   The AI checks each metric against plain SQL on the fact table, and the two numbers must match.
 
+For Lecture 29, `app.py` asks for a story topic and sends it to the OpenAI API. To run it, create a virtual environment, run `pip install -r requirements.txt`, and put your API key in a `.env` file as `OPENAI_API_KEY=...`. The `.env` file and `venv/` are git-ignored, so your key is never committed.
+
 Run the SQL yourself rather than pasting it wholesale — the comments in each file explain *why* every option is set the way it is.
 
 ## Course progress
@@ -116,6 +119,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 25 — What a skill is
 - [x] Lecture 27 — What generative AI is
 - [x] Lecture 28 — Generative AI vocabulary
+- [x] Lecture 29 — Your first API call
 
 ## License
 
