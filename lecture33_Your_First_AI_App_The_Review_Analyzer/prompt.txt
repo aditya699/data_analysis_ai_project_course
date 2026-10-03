@@ -1,0 +1,36 @@
+TASK
+Build a small terminal app called "Review Analyzer". The user pastes a customer
+review, and the app returns structured data about it, not chat text.
+
+CONTEXT
+- Python, using the OpenAI Responses API and the official openai SDK.
+- Model: gpt-6-luna. Use reasoning effort "low".
+- The API key is in a .env file, loaded with python-dotenv. Never hardcode it.
+- Reviews are for OrderIQ, an Indian online store.
+- This is for a beginner course lecture, so keep the code short, readable and
+  well commented. One file is enough.
+
+WHAT THE APP RETURNS FOR EACH REVIEW
+- sentiment: positive, neutral or negative
+- topic: delivery, quality, price, packaging or other
+- urgency: low, medium or high
+- summary: one sentence
+- suggested_reply: a short, polite reply to the customer
+
+RULES
+- Use OpenAI's structured output feature so the model must return exactly these
+  fields. Define the shape with Pydantic. Check the current OpenAI docs for the
+  right way to do this with the Responses API; do not guess.
+- Put the model's instructions in the instructions parameter. Include this rule
+  with its reason: urgency is high when the item arrived damaged or wrong,
+  because those customers need a refund or replacement quickly.
+- Loop: keep asking for reviews until the user types q.
+- Print each field on its own line, then the full result as JSON.
+
+VERIFICATION
+Run the app with these 3 reviews and show me the output:
+1. "Arrived in 2 days, fits perfectly. Love it!"
+2. "The box was crushed and the glass inside was broken."
+3. "Decent shoes but cheaper on another site."
+Expected: 1 is positive/low urgency, 2 is negative/high urgency/packaging or
+quality, 3 is neutral or negative/price. Tell me if any result looks wrong.

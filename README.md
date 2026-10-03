@@ -34,6 +34,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `lecture29_Your_First API_Call` | Your first API call | `app.py` (short-story script) + `requirements.txt` |
 | `Lecture31_Prompting` | Prompting in 2026 | Slides |
 | `lecture32_How_to_use_api` | How to use the API | `app.py` (story script with `instructions` and `reasoning`) + `requirements.txt` |
+| `lecture33_Your_First_AI_App_The_Review_Analyzer` | Your first AI app: the Review Analyzer | `prompt.txt` (AI prompt) + `app.py` + `requirements.txt` |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -90,7 +91,7 @@ That sequence gives you:
 
   The AI checks each metric against plain SQL on the fact table, and the two numbers must match.
 
-For Lectures 29 and 32, `app.py` asks for a story topic and sends it to the OpenAI API. To run it, create a virtual environment, run `pip install -r requirements.txt`, and put your API key in a `.env` file as `OPENAI_API_KEY=...`. The `.env` file and `venv/` are git-ignored, so your key is never committed.
+For Lectures 29, 32 and 33, `app.py` asks for a story topic and sends it to the OpenAI API. To run it, create a virtual environment, run `pip install -r requirements.txt`, and put your API key in a `.env` file as `OPENAI_API_KEY=...`. The `.env` file and `venv/` are git-ignored, so your key is never committed.
 
 Run the SQL yourself rather than pasting it wholesale — the comments in each file explain *why* every option is set the way it is.
 
@@ -124,6 +125,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 29 — Your first API call
 - [x] Lecture 31 — Prompting in 2026
 - [x] Lecture 32 — How to use the API
+- [x] Lecture 33 — Your first AI app: the Review Analyzer
 
 ## License
 
