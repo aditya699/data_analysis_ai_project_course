@@ -32,6 +32,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `Lecture27_generative_ai_introduction` | What generative AI is | Slides |
 | `lecture28_GenAI Vocabulary` | Generative AI vocabulary | Slides |
 | `lecture29_Your_First API_Call` | Your first API call | `app.py` (short-story script) + `requirements.txt` |
+| `Lecture31_Prompting` | Prompting in 2026 | Slides |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -120,6 +121,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 27 — What generative AI is
 - [x] Lecture 28 — Generative AI vocabulary
 - [x] Lecture 29 — Your first API call
+- [x] Lecture 31 — Prompting in 2026
 
 ## License
 
