@@ -36,6 +36,7 @@ Each lecture folder holds its slides (`.pptx`) and, where there's hands-on work,
 | `lecture32_How_to_use_api` | How to use the API | `app.py` (story script with `instructions` and `reasoning`) + `requirements.txt` |
 | `lecture33_Your_First_AI_App_The_Review_Analyzer` | Your first AI app: the Review Analyzer | `prompt.txt` (AI prompt) + `app.py` + `requirements.txt` |
 | `lecture34_Your_First_Chatbot` | Your first chatbot | `app.py` (chatbot that remembers the conversation) + `prompt.txt` + `requirements.txt` |
+| `lecture35_Embeddings` | Embeddings | Slides + `app.py` (the chatbot with an embedding and cosine-similarity demo) |
 
 `OrderIQ-Day-by-Day-Plan.pdf` is the full course plan.
 
@@ -128,6 +129,7 @@ Run the SQL yourself rather than pasting it wholesale — the comments in each f
 - [x] Lecture 32 — How to use the API
 - [x] Lecture 33 — Your first AI app: the Review Analyzer
 - [x] Lecture 34 — Your first chatbot
+- [x] Lecture 35 — Embeddings
 
 ## License
 
