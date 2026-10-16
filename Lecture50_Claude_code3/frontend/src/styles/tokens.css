@@ -1,0 +1,60 @@
+/* Design tokens: every color, radius and shadow lives here.
+   Components use var(--token) only, so dark mode works everywhere. */
+
+:root {
+  --bg: #f5f6fa;
+  --surface: #ffffff;
+  --surface-muted: #f0f2f8;
+  --text: #161a26;
+  --text-muted: #5f6678;
+  --border: #dde1eb;
+  --border-strong: #b9c0d0;
+
+  --brand: #5b4cf0;
+  --brand-hover: #4a3bdc;
+  --brand-soft: #eeecfe;
+  --brand-text: #ffffff;
+
+  --success: #12805c;
+  --success-soft: #e3f5ee;
+  --danger: #c0262d;
+  --danger-soft: #fdecec;
+
+  --badge-csv: #0f8a7e;
+  --badge-xlsx: #1d7a3a;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06);
+  --shadow-md: 0 8px 24px rgb(16 24 40 / 0.08);
+
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1118;
+    --surface: #171b25;
+    --surface-muted: #1e2330;
+    --text: #eceef4;
+    --text-muted: #9aa1b2;
+    --border: #2a3040;
+    --border-strong: #3c4457;
+
+    --brand: #8b7ff7;
+    --brand-hover: #9d93fa;
+    --brand-soft: #262245;
+    --brand-text: #0e1118;
+
+    --success: #4cc79a;
+    --success-soft: #15302a;
+    --danger: #f2777b;
+    --danger-soft: #3a1c1f;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 8px 24px rgb(0 0 0 / 0.35);
+    color-scheme: dark;
+  }
+}

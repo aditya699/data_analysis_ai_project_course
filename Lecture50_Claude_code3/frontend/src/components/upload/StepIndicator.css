@@ -1,0 +1,45 @@
+.steps {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.step-dot {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1.5px solid var(--border-strong);
+}
+
+.step-active {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.step-active .step-dot {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--brand-text);
+}
+
+.step-done .step-dot {
+  border-color: var(--success);
+  background: var(--success);
+  color: var(--surface);
+}

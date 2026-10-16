@@ -1,0 +1,74 @@
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.dropzone:hover,
+.dropzone:focus-visible {
+  border-color: var(--brand);
+  outline: none;
+}
+
+.dropzone-dragging {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+  transform: scale(1.01);
+}
+
+.dropzone-error {
+  border-color: var(--danger);
+}
+
+.dropzone-icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+.dropzone-title {
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dropzone-hint {
+  margin-top: 4px;
+  color: var(--text-muted);
+}
+
+.dropzone-link {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dropzone-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.chip {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}

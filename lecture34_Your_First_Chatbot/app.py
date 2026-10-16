@@ -1,5 +1,8 @@
 # Review Chatbot: paste a customer review, then ask follow-up questions about it.
 # The model remembers the conversation using previous_response_id.
+# Bonus: every message is also turned into an embedding so we can see what one looks like.
+
+import math
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -27,8 +30,28 @@ When the user asks a follow-up question (for example "make the reply more formal
 answer it using the conversation so far. Keep answers short.
 """
 
+
+def get_embedding(text):
+    # An embedding is a list of numbers that captures the MEANING of the text.
+    # Texts with similar meaning get similar lists of numbers.
+    result = client.embeddings.create(model="text-embedding-3-small", input=text)
+    return result.data[0].embedding
+
+
+def cosine_similarity(a, b):
+    # cos(A, B) = (A · B) / (|A| × |B|)
+    dot = sum(x * y for x, y in zip(a, b))          # A · B : multiply pairs, add them up
+    length_a = math.sqrt(sum(x * x for x in a))     # |A|   : length of vector A
+    length_b = math.sqrt(sum(y * y for y in b))     # |B|   : length of vector B
+    return dot, length_a, length_b, dot / (length_a * length_b)
+
+
 # Starts empty. After each turn we store the id of the model's last response here.
 previous_id = None
+
+# The embedding of the previous message, so we can compare it with the new one
+previous_embedding = None
+previous_message = None
 
 print("Review Chatbot (type q to quit)")
 print("Paste a review, then ask follow-up questions about it.")
@@ -41,6 +64,25 @@ while True:
         break
     if not user_message:
         continue
+
+    # --- Embedding demo -------------------------------------------------
+    embedding = get_embedding(user_message)
+    print(f"\nEmbedding: {len(embedding)} numbers. First 8:")
+    print([round(x, 4) for x in embedding[:8]], "...")
+
+    # Compare this message with the previous one
+    if previous_embedding is not None:
+        dot, length_a, length_b, similarity = cosine_similarity(previous_embedding, embedding)
+        print("\nCosine similarity with your previous message:")
+        print(f'  A = "{previous_message}"')
+        print(f'  B = "{user_message}"')
+        print("  cos(A, B) = (A · B) / (|A| × |B|)")
+        print(f"            = {dot:.4f} / ({length_a:.4f} × {length_b:.4f})")
+        print(f"            = {similarity:.4f}   (closer to 1 = more similar meaning)")
+
+    previous_embedding = embedding
+    previous_message = user_message
+    # ---------------------------------------------------------------------
 
     response = client.responses.create(
         model="gpt-6-luna",
