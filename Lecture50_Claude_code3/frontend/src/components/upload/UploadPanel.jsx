@@ -9,14 +9,20 @@ import './UploadPanel.css'
 // Container for the upload flow: owns state via useFileUpload and
 // decides which child (Dropzone or FileCard) to show.
 export default function UploadPanel() {
-  const { file, error, selectFiles, clearFile } = useFileUpload()
+  const { file, error, status, progress, selectFiles, clearFile, startUpload } = useFileUpload()
 
   return (
     <section className="upload-panel" aria-label="Upload data">
-      <StepIndicator currentStep={file ? 1 : 0} />
+      <StepIndicator currentStep={status === 'uploaded' ? 1 : 0} />
 
       {file ? (
-        <FileCard file={file} onRemove={clearFile} />
+        <FileCard
+          file={file}
+          status={status}
+          progress={progress}
+          onUpload={startUpload}
+          onRemove={clearFile}
+        />
       ) : (
         <Dropzone onFilesSelected={selectFiles} hasError={Boolean(error)} />
       )}
@@ -25,7 +31,7 @@ export default function UploadPanel() {
 
       <p className="upload-privacy">
         <Icon name="lock" size={14} />
-        Files are checked in your browser. Nothing is uploaded until you start an analysis.
+        Files are checked in your browser, then sent over HTTPS to private cloud storage.
       </p>
     </section>
   )

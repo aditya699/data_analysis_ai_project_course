@@ -61,10 +61,45 @@
   gap: 4px;
   padding: 3px 10px;
   border-radius: 999px;
-  background: var(--success-soft);
-  color: var(--success);
+  background: var(--brand-soft);
+  color: var(--brand);
   font-size: 12px;
   font-weight: 600;
+}
+
+.file-status-uploaded {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.file-progress {
+  position: relative;
+  height: 8px;
+  margin-top: 16px;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  overflow: hidden;
+}
+
+.file-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--brand);
+  transition: width 0.2s ease;
+}
+
+.file-progress-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .file-progress-bar {
+    transition: none;
+  }
 }
 
 .file-card-actions {

@@ -13,3 +13,7 @@ export const ACCEPT_ATTRIBUTE = [
   'text/csv',
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 ].join(',')
+
+// Backend API. Override per machine in frontend/.env.local, e.g.
+// VITE_API_URL=http://127.0.0.1:8010
+export const API_BASE_URL = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000'

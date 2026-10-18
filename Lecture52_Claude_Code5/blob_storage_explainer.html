@@ -1,0 +1,493 @@
+<title>Why Blob Storage Next</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one teaching column, each section = one idea + one diagram, read top to bottom like a lecture */
+:root {
+  --bg: #F3F6F8;
+  --surface: #FFFFFF;
+  --fg: #15212C;
+  --muted: #566573;
+  --line: #CBD5DD;
+  --accent: #0B7A83;      /* storage teal */
+  --accent-soft: #D6EEF0;
+  --warn: #B86200;
+  --warn-soft: #FBEBD6;
+  --bad: #B83A1E;
+  --bad-soft: #F8E0D9;
+  --good: #2D7A3E;
+  --good-soft: #DCEFDF;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F171D; --surface: #17222A; --fg: #E4ECF1; --muted: #9AABB8; --line: #2F3F4B;
+    --accent: #4CC3CC; --accent-soft: #143A3F;
+    --warn: #F0A24A; --warn-soft: #3A2A14;
+    --bad: #F08468; --bad-soft: #3D1F18;
+    --good: #6FCB82; --good-soft: #17331E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F171D; --surface: #17222A; --fg: #E4ECF1; --muted: #9AABB8; --line: #2F3F4B;
+  --accent: #4CC3CC; --accent-soft: #143A3F;
+  --warn: #F0A24A; --warn-soft: #3A2A14;
+  --bad: #F08468; --bad-soft: #3D1F18;
+  --good: #6FCB82; --good-soft: #17331E;
+  color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+.page { max-width: 960px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.45rem, 3.2vw, 1.9rem); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+code, .mono { font-family: var(--font-mono); font-size: 0.88em; }
+code { background: var(--accent-soft); color: var(--fg); padding: 1px 6px; border-radius: 4px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+
+header.hero { display: grid; gap: 14px; }
+header.hero .lede { font-size: 1.15rem; color: var(--muted); }
+
+section { display: grid; gap: 18px; }
+.section-head { display: grid; gap: 6px; }
+
+.diagram { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 680px; height: auto; }
+.caption { font-size: 0.9rem; color: var(--muted); }
+
+/* SVG styling through tokens */
+.svg-box { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.svg-done { fill: var(--good-soft); stroke: var(--good); stroke-width: 1.5; }
+.svg-next { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; stroke-dasharray: 7 5; }
+.svg-later { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.svg-bad { fill: var(--bad-soft); stroke: var(--bad); stroke-width: 1.5; }
+.svg-account { fill: var(--bg); stroke: var(--accent); stroke-width: 2; }
+.svg-container { fill: var(--surface); stroke: var(--accent); stroke-width: 1.5; }
+.svg-file { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+.svg-t { fill: var(--fg); font-family: var(--font-body); font-size: 15px; }
+.svg-tb { fill: var(--fg); font-family: var(--font-display); font-size: 16px; font-weight: 600; }
+.svg-tm { fill: var(--muted); font-family: var(--font-body); font-size: 13px; }
+.svg-mono { fill: var(--fg); font-family: var(--font-mono); font-size: 12px; }
+.svg-good { fill: var(--good); font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; }
+.svg-acc { fill: var(--accent); font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; }
+.svg-badt { fill: var(--bad); font-family: var(--font-body); font-size: 13px; font-weight: 700; }
+.svg-arrow { stroke: var(--muted); stroke-width: 2; fill: none; }
+.svg-arrow-acc { stroke: var(--accent); stroke-width: 2.5; fill: none; }
+.svg-arrow-bad { stroke: var(--bad); stroke-width: 3.5; fill: none; }
+.svg-life { stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 6; }
+.head-muted { fill: var(--muted); }
+.head-acc { fill: var(--accent); }
+.head-bad { fill: var(--bad); }
+.svg-step { fill: var(--accent); }
+.svg-step-t { fill: var(--surface); font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+
+/* Problem cards */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.card p { font-size: 0.96rem; color: var(--muted); }
+
+/* Comparison table */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.95rem; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+tr.winner td { background: var(--accent-soft); }
+.y { color: var(--good); font-weight: 700; }
+.n { color: var(--bad); font-weight: 700; }
+.m { color: var(--warn); font-weight: 700; }
+
+/* Analogy callout */
+.analogy { border-left: 4px solid var(--accent); background: var(--surface); padding: 16px 20px; border-radius: 0 10px 10px 0; display: grid; gap: 6px; }
+.analogy strong { font-family: var(--font-display); }
+
+/* Glossary */
+dl.terms { display: grid; grid-template-columns: max-content 1fr; gap: 10px 20px; margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+dl.terms dt { font-family: var(--font-mono); font-weight: 600; font-size: 0.9rem; color: var(--accent); }
+dl.terms dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { dl.terms { grid-template-columns: 1fr; } dl.terms dd { margin-bottom: 8px; } }
+
+.providers { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--font-mono); font-size: 0.82rem; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+
+/* Teaching notes */
+.teach { background: var(--surface); border: 1px dashed var(--accent); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+.teach ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+.quiz { display: grid; gap: 10px; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+summary { cursor: pointer; font-weight: 700; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+details p { margin-top: 8px; color: var(--muted); }
+</style>
+
+<main class="page">
+
+  <header class="hero">
+    <span class="eyebrow">Auto Data Analyst Agent · Lecture 52</span>
+    <h1>Why the file goes to blob storage next</h1>
+    <p class="lede">The upload screen already lets someone pick a CSV or XLSX and checks it. But the file never leaves their browser. Before an AI agent can analyse it, the file needs a safe, permanent home. That home is blob storage.</p>
+  </header>
+
+  <!-- 1. Where we are -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Where we are</span>
+      <h2>The app has a gap in the middle</h2>
+    </div>
+    <p>Steps 1 and 2 are built. Steps 4 and 5 are the exciting part, the agent and its insights. But step 4 cannot start, because there is no place the agent can get the file from.</p>
+    <div class="diagram" role="img" aria-label="Pipeline: pick file (done), validate in browser (done), store the file (next step), analyse with agent (later), show results (later).">
+      <svg viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head-muted"/></marker>
+        </defs>
+        <!-- boxes: x = 10,190,370,550,730 ; w=160 -->
+        <rect x="10" y="40" width="160" height="96" rx="10" class="svg-done"/>
+        <text x="90" y="80" text-anchor="middle" class="svg-tb">Pick a file</text>
+        <text x="90" y="102" text-anchor="middle" class="svg-tm">drag &amp; drop</text>
+        <text x="90" y="160" text-anchor="middle" class="svg-good">✓ BUILT</text>
+
+        <rect x="190" y="40" width="160" height="96" rx="10" class="svg-done"/>
+        <text x="270" y="80" text-anchor="middle" class="svg-tb">Validate</text>
+        <text x="270" y="102" text-anchor="middle" class="svg-tm">.csv/.xlsx, ≤ 100 MB</text>
+        <text x="270" y="160" text-anchor="middle" class="svg-good">✓ BUILT</text>
+
+        <rect x="370" y="40" width="160" height="96" rx="10" class="svg-next"/>
+        <text x="450" y="80" text-anchor="middle" class="svg-tb">Store the file</text>
+        <text x="450" y="102" text-anchor="middle" class="svg-tm">blob storage</text>
+        <text x="450" y="160" text-anchor="middle" class="svg-acc">◆ NEXT STEP</text>
+
+        <rect x="550" y="40" width="160" height="96" rx="10" class="svg-later"/>
+        <text x="630" y="80" text-anchor="middle" class="svg-tb">Analyse</text>
+        <text x="630" y="102" text-anchor="middle" class="svg-tm">AI agent</text>
+        <text x="630" y="160" text-anchor="middle" class="svg-tm">later</text>
+
+        <rect x="730" y="40" width="160" height="96" rx="10" class="svg-later"/>
+        <text x="810" y="80" text-anchor="middle" class="svg-tb">Show results</text>
+        <text x="810" y="102" text-anchor="middle" class="svg-tm">charts, Q&amp;A</text>
+        <text x="810" y="160" text-anchor="middle" class="svg-tm">later</text>
+
+        <line x1="172" y1="88" x2="187" y2="88" class="svg-arrow" marker-end="url(#ah)"/>
+        <line x1="352" y1="88" x2="367" y2="88" class="svg-arrow" marker-end="url(#ah)"/>
+        <line x1="532" y1="88" x2="547" y2="88" class="svg-arrow" marker-end="url(#ah)"/>
+        <line x1="712" y1="88" x2="727" y2="88" class="svg-arrow" marker-end="url(#ah)"/>
+
+        <text x="450" y="22" text-anchor="middle" class="svg-tm">Everything to the right depends on this box</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 2. The problem -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">The problem</span>
+      <h2>Right now the file only lives in one browser tab</h2>
+    </div>
+    <p>In the code, the selected file is just a variable in React state (<code>useFileUpload.js</code>). That causes four problems as soon as we add the agent:</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>It vanishes on refresh</h3>
+        <p>Close the tab or press F5 and the file is gone. The user has to upload again.</p>
+      </div>
+      <div class="card">
+        <h3>The agent can't reach it</h3>
+        <p>The analysis runs on a server. A server cannot read a file sitting in someone's browser.</p>
+      </div>
+      <div class="card">
+        <h3>Analysis is slow</h3>
+        <p>Profiling 5,000 UPI rows and calling an LLM can take a minute. We can't keep a web request open that long. The job needs to pick up the file later.</p>
+      </div>
+      <div class="card">
+        <h3>We need it again and again</h3>
+        <p>Quality checks, charts, then follow-up questions in plain English. Each step re-reads the same file.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. What is blob -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">The concept</span>
+      <h2>What is blob storage?</h2>
+    </div>
+    <p><strong>Blob</strong> stands for <strong>B</strong>inary <strong>L</strong>arge <strong>OB</strong>ject. It just means “a file, treated as a bag of bytes.” Storage doesn't care whether it's a CSV, a photo or a video.</p>
+    <p><strong>Blob storage</strong> is a cloud service that keeps huge numbers of files safely and cheaply. Your code talks to it over the internet: put this file, get that file, delete this file.</p>
+
+    <div class="analogy">
+      <strong>Analogy: Google Drive for your app, without the screens</strong>
+      <p>Google Drive is file storage built for people, with folders and a nice UI. Blob storage is file storage built for programs. There's no UI to click through, only an API. Your app is the only “person” using it.</p>
+    </div>
+
+    <div class="diagram" role="img" aria-label="A storage account contains containers. The uploads container holds each user's original file under a unique ID. The reports container holds generated outputs.">
+      <svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="880" height="310" rx="14" class="svg-account"/>
+        <text x="30" y="40" class="svg-tb">Storage account</text>
+        <text x="172" y="40" class="svg-mono">autoanalyst-dev</text>
+        <text x="870" y="40" text-anchor="end" class="svg-tm">like a whole Google Drive</text>
+
+        <!-- container 1 -->
+        <rect x="30" y="60" width="410" height="240" rx="10" class="svg-container"/>
+        <text x="50" y="88" class="svg-tb">Container</text>
+        <text x="138" y="88" class="svg-mono">uploads</text>
+        <text x="420" y="88" text-anchor="end" class="svg-tm">like a top folder</text>
+
+        <rect x="50" y="108" width="370" height="50" rx="6" class="svg-file"/>
+        <text x="66" y="130" class="svg-mono">uploads/7f3a91c2/original.csv</text>
+        <text x="66" y="148" class="svg-tm">4.8 MB · upi_transactions.csv</text>
+
+        <rect x="50" y="170" width="370" height="50" rx="6" class="svg-file"/>
+        <text x="66" y="192" class="svg-mono">uploads/b04de117/original.xlsx</text>
+        <text x="66" y="210" class="svg-tm">62 MB · sales_2026.xlsx</text>
+
+        <rect x="50" y="232" width="370" height="50" rx="6" class="svg-file"/>
+        <text x="66" y="254" class="svg-mono">uploads/c9e20a55/original.csv</text>
+        <text x="66" y="272" class="svg-tm">0.3 MB · survey.csv</text>
+
+        <!-- container 2 -->
+        <rect x="460" y="60" width="410" height="240" rx="10" class="svg-container"/>
+        <text x="480" y="88" class="svg-tb">Container</text>
+        <text x="568" y="88" class="svg-mono">reports</text>
+        <text x="850" y="88" text-anchor="end" class="svg-tm">later lectures</text>
+
+        <rect x="480" y="108" width="370" height="50" rx="6" class="svg-file"/>
+        <text x="496" y="130" class="svg-mono">reports/7f3a91c2/profile.json</text>
+        <text x="496" y="148" class="svg-tm">column stats, missing values</text>
+
+        <rect x="480" y="170" width="370" height="50" rx="6" class="svg-file"/>
+        <text x="496" y="192" class="svg-mono">reports/7f3a91c2/chart_amounts.png</text>
+        <text x="496" y="210" class="svg-tm">chart made by the agent</text>
+
+        <text x="665" y="262" text-anchor="middle" class="svg-tm">Each blob = one file, found by its name (key)</text>
+      </svg>
+    </div>
+    <p class="caption">Notice the file is saved under an ID we generate (<code>7f3a91c2</code>), not under the user's filename. Two people uploading <code>data.csv</code> must never overwrite each other.</p>
+
+    <dl class="terms">
+      <dt>Storage account</dt><dd>Your space in the cloud provider. Holds everything.</dd>
+      <dt>Container / bucket</dt><dd>A top-level folder, like <code>uploads</code>. Azure calls it a container, AWS calls it a bucket.</dd>
+      <dt>Blob / object</dt><dd>One file. Can be a few bytes or many gigabytes.</dd>
+      <dt>Key</dt><dd>The blob's full name, e.g. <code>uploads/7f3a91c2/original.csv</code>. The slashes only look like folders.</dd>
+      <dt>Signed URL</dt><dd>A temporary link that lets someone upload or download one blob without a password. Covered below.</dd>
+    </dl>
+
+    <div class="providers" aria-label="Blob storage services">
+      <span class="chip">Azure Blob Storage</span>
+      <span class="chip">AWS S3</span>
+      <span class="chip">Google Cloud Storage</span>
+      <span class="chip">Cloudflare R2</span>
+      <span class="chip">Azurite (local, free)</span>
+      <span class="chip">MinIO (local, free)</span>
+    </div>
+    <p class="caption">They all work the same way. Learn one and the others are easy.</p>
+  </section>
+
+  <!-- 4. Why not elsewhere -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Why blob and not something else</span>
+      <h2>Four places we could keep the file</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Option</th><th>Survives refresh?</th><th>Handles 100 MB?</th><th>Works with many servers?</th><th>Verdict</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Browser memory (today)</td><td class="n">No</td><td class="m">Barely</td><td class="n">No</td><td>Server can't see it</td></tr>
+          <tr><td>Server's own hard disk</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td><td>Lost when the server restarts or scales</td></tr>
+          <tr><td>Database column</td><td class="y">Yes</td><td class="n">Badly</td><td class="y">Yes</td><td>Databases are for rows, not big files</td></tr>
+          <tr class="winner"><td><strong>Blob storage</strong></td><td class="y">Yes</td><td class="y">Yes, up to TBs</td><td class="y">Yes</td><td><strong>Cheap, durable, built for files</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">The usual pattern: <strong>files go in blob storage, facts about the files go in a database</strong> (who uploaded it, when, status, where the blob is).</p>
+  </section>
+
+  <!-- 5. Two ways to upload -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">How to upload</span>
+      <h2>Don't push 100 MB through your own server</h2>
+    </div>
+    <p>The obvious approach is: browser sends the file to our API, and our API forwards it to blob storage. It works for small files, but the 100 MB passes through our server twice.</p>
+
+    <div class="diagram" role="img" aria-label="Option A: browser sends 100 MB to the API server, which forwards 100 MB to blob storage. The server gets busy, uses RAM and can time out.">
+      <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="head-bad"/></marker>
+        </defs>
+        <text x="10" y="24" class="svg-tb">A · Through our server</text>
+        <text x="890" y="24" text-anchor="end" class="svg-badt">avoid for big files</text>
+
+        <rect x="20" y="60" width="180" height="80" rx="10" class="svg-box"/>
+        <text x="110" y="97" text-anchor="middle" class="svg-tb">Browser</text>
+        <text x="110" y="119" text-anchor="middle" class="svg-tm">user's file</text>
+
+        <rect x="360" y="60" width="180" height="80" rx="10" class="svg-bad"/>
+        <text x="450" y="97" text-anchor="middle" class="svg-tb">Our API server</text>
+        <text x="450" y="119" text-anchor="middle" class="svg-tm">FastAPI</text>
+
+        <rect x="700" y="60" width="180" height="80" rx="10" class="svg-box"/>
+        <text x="790" y="97" text-anchor="middle" class="svg-tb">Blob storage</text>
+        <text x="790" y="119" text-anchor="middle" class="svg-tm">uploads/</text>
+
+        <line x1="204" y1="100" x2="354" y2="100" class="svg-arrow-bad" marker-end="url(#ahb)"/>
+        <text x="280" y="90" text-anchor="middle" class="svg-mono">100 MB</text>
+        <line x1="544" y1="100" x2="694" y2="100" class="svg-arrow-bad" marker-end="url(#ahb)"/>
+        <text x="620" y="90" text-anchor="middle" class="svg-mono">100 MB again</text>
+
+        <text x="450" y="172" text-anchor="middle" class="svg-badt">Server is stuck holding the file: uses RAM, blocks other users, can time out</text>
+      </svg>
+    </div>
+
+    <p>The better approach: our server only hands out a <strong>permission slip</strong>, called a <strong>signed URL</strong>. The browser then uploads the file <em>directly</em> to blob storage.</p>
+
+    <div class="diagram" role="img" aria-label="Option B: browser asks the API for permission with a tiny request, receives a signed URL, then uploads 100 MB directly to blob storage.">
+      <svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="aha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="head-acc"/></marker>
+          <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="head-muted"/></marker>
+        </defs>
+        <text x="10" y="24" class="svg-tb">B · Direct upload with a signed URL</text>
+        <text x="890" y="24" text-anchor="end" class="svg-acc">WHAT WE'LL BUILD</text>
+
+        <rect x="20" y="130" width="180" height="80" rx="10" class="svg-box"/>
+        <text x="110" y="167" text-anchor="middle" class="svg-tb">Browser</text>
+        <text x="110" y="189" text-anchor="middle" class="svg-tm">user's file</text>
+
+        <rect x="360" y="44" width="180" height="70" rx="10" class="svg-box"/>
+        <text x="450" y="76" text-anchor="middle" class="svg-tb">Our API server</text>
+        <text x="450" y="97" text-anchor="middle" class="svg-tm">only hands out slips</text>
+
+        <rect x="700" y="130" width="180" height="80" rx="10" class="svg-next"/>
+        <text x="790" y="167" text-anchor="middle" class="svg-tb">Blob storage</text>
+        <text x="790" y="189" text-anchor="middle" class="svg-tm">uploads/</text>
+
+        <!-- ask -->
+        <path d="M150,128 L150,70 L354,70" class="svg-arrow" marker-end="url(#ahm)"/>
+        <text x="160" y="60" class="svg-mono">① "may I upload?" (1 KB)</text>
+        <!-- slip back -->
+        <path d="M356,98 L90,98 L90,126" class="svg-arrow" marker-end="url(#ahm)"/>
+        <text x="210" y="116" class="svg-mono">② signed URL</text>
+        <!-- direct -->
+        <line x1="204" y1="185" x2="694" y2="185" class="svg-arrow-acc" marker-end="url(#aha)"/>
+        <text x="450" y="176" text-anchor="middle" class="svg-mono">③ 100 MB, straight to storage</text>
+
+        <text x="450" y="238" text-anchor="middle" class="svg-tm">Our server never touches the big file. Storage is built to take it.</text>
+      </svg>
+    </div>
+
+    <div class="analogy">
+      <strong>Analogy: the cloakroom ticket</strong>
+      <p>You don't hand your suitcase to the hotel manager. The manager gives you a ticket for locker 42, valid for 10 minutes. You walk to the locker yourself. The signed URL is that ticket. It works for one file, one action (upload) and a short time, and then expires.</p>
+    </div>
+  </section>
+
+  <!-- 6. Full sequence -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">Step by step</span>
+      <h2>The full upload, in five messages</h2>
+    </div>
+    <div class="diagram" role="img" aria-label="Sequence: 1 browser asks backend for upload with file name and size. 2 backend re-validates and returns upload id and signed URL. 3 browser PUTs the file to blob storage. 4 browser tells backend upload is complete. 5 backend checks the blob exists and marks status uploaded.">
+      <svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ahs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="head-muted"/></marker>
+          <marker id="ahs2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="head-acc"/></marker>
+        </defs>
+        <!-- heads -->
+        <rect x="70" y="10" width="160" height="50" rx="8" class="svg-box"/>
+        <text x="150" y="41" text-anchor="middle" class="svg-tb">Browser (React)</text>
+        <rect x="370" y="10" width="160" height="50" rx="8" class="svg-box"/>
+        <text x="450" y="41" text-anchor="middle" class="svg-tb">Backend API</text>
+        <rect x="670" y="10" width="160" height="50" rx="8" class="svg-next"/>
+        <text x="750" y="41" text-anchor="middle" class="svg-tb">Blob storage</text>
+        <!-- lifelines -->
+        <line x1="150" y1="60" x2="150" y2="455" class="svg-life"/>
+        <line x1="450" y1="60" x2="450" y2="455" class="svg-life"/>
+        <line x1="750" y1="60" x2="750" y2="455" class="svg-life"/>
+
+        <!-- 1 -->
+        <circle cx="30" cy="108" r="13" class="svg-step"/><text x="30" y="112" text-anchor="middle" class="svg-step-t">1</text>
+        <line x1="152" y1="108" x2="446" y2="108" class="svg-arrow" marker-end="url(#ahs)"/>
+        <text x="300" y="98" text-anchor="middle" class="svg-mono">POST /api/uploads</text>
+        <text x="300" y="128" text-anchor="middle" class="svg-tm">name, size, type</text>
+
+        <!-- 2 -->
+        <circle cx="30" cy="178" r="13" class="svg-step"/><text x="30" y="182" text-anchor="middle" class="svg-step-t">2</text>
+        <rect x="462" y="148" width="250" height="24" rx="4" class="svg-box"/>
+        <text x="472" y="165" class="svg-tm">re-check .csv/.xlsx and ≤ 100 MB</text>
+        <line x1="448" y1="190" x2="154" y2="190" class="svg-arrow" marker-end="url(#ahs)"/>
+        <text x="300" y="182" text-anchor="middle" class="svg-mono">upload_id + signed URL</text>
+        <text x="300" y="208" text-anchor="middle" class="svg-tm">expires in 10 min</text>
+
+        <!-- 3 -->
+        <circle cx="30" cy="258" r="13" class="svg-step"/><text x="30" y="262" text-anchor="middle" class="svg-step-t">3</text>
+        <line x1="152" y1="258" x2="746" y2="258" class="svg-arrow-acc" marker-end="url(#ahs2)"/>
+        <text x="300" y="248" text-anchor="middle" class="svg-mono">PUT file → signed URL</text>
+        <text x="600" y="248" text-anchor="middle" class="svg-tm">progress bar 0 → 100%</text>
+
+        <!-- 4 -->
+        <circle cx="30" cy="328" r="13" class="svg-step"/><text x="30" y="332" text-anchor="middle" class="svg-step-t">4</text>
+        <line x1="152" y1="328" x2="446" y2="328" class="svg-arrow" marker-end="url(#ahs)"/>
+        <text x="300" y="318" text-anchor="middle" class="svg-mono">POST …/{id}/complete</text>
+
+        <!-- 5 -->
+        <circle cx="30" cy="398" r="13" class="svg-step"/><text x="30" y="402" text-anchor="middle" class="svg-step-t">5</text>
+        <line x1="452" y1="380" x2="746" y2="380" class="svg-arrow" marker-end="url(#ahs)"/>
+        <text x="600" y="372" text-anchor="middle" class="svg-mono">does the blob exist? size ok?</text>
+        <line x1="448" y1="418" x2="154" y2="418" class="svg-arrow" marker-end="url(#ahs)"/>
+        <text x="300" y="410" text-anchor="middle" class="svg-mono">status: "uploaded" ✓</text>
+        <text x="300" y="440" text-anchor="middle" class="svg-tm">"Analyze with agent" button turns on</text>
+      </svg>
+    </div>
+    <p class="caption">Step 2 matters: the backend checks the limits again. A user can bypass browser checks, so never trust the client alone.</p>
+  </section>
+
+  <!-- 7. What it unlocks -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">What this unlocks</span>
+      <h2>Once the file has a home, the agent can start</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card"><h3>Background analysis</h3><p>A worker reads <code>uploads/{id}/original.csv</code> whenever it's ready. The user isn't stuck on a loading spinner.</p></div>
+      <div class="card"><h3>Re-run and ask questions</h3><p>Every Q&amp;A question reads the same stored file. No re-uploading.</p></div>
+      <div class="card"><h3>Save outputs</h3><p>Charts and reports from the agent go into <code>reports/{id}/</code> in the same storage.</p></div>
+      <div class="card"><h3>Clean up automatically</h3><p>Storage can delete old uploads after 7 days. Good for privacy and cost.</p></div>
+    </div>
+  </section>
+
+  <!-- 8. Teaching notes -->
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">For the instructor</span>
+      <h2>How to teach this in class</h2>
+    </div>
+    <div class="teach">
+      <ol>
+        <li><strong>Start with the demo.</strong> Upload <code>upi_transactions.csv</code>, then refresh the page. The file is gone. Ask: “How would the agent read this?”</li>
+        <li><strong>Show the gap diagram.</strong> Steps 1 and 2 are done, step 4 needs the file, so step 3 is next.</li>
+        <li><strong>Explain blob with the Google Drive analogy</strong>, then the account → container → blob picture.</li>
+        <li><strong>Walk the comparison table.</strong> Let students guess each answer before you reveal it.</li>
+        <li><strong>Draw option A on the board first.</strong> Ask what goes wrong with 50 users uploading 100 MB at once. Then show option B and the cloakroom ticket.</li>
+        <li><strong>Build it live:</strong> one backend route that returns a signed URL, then the PUT with a progress bar. Use Azurite or MinIO so nobody needs a cloud account.</li>
+      </ol>
+    </div>
+
+    <h3>Quick check for students</h3>
+    <div class="quiz">
+      <details><summary>What does “blob” stand for, and why doesn't storage care about the file type?</summary><p>Binary Large OBject. Storage only sees bytes. Opening the file as a CSV or XLSX is our code's job.</p></details>
+      <details><summary>Why not save uploads to the server's own disk?</summary><p>That disk disappears when the server restarts, and with two or more servers the file is only on one of them.</p></details>
+      <details><summary>Why do we save the file as <code>uploads/{id}/original.csv</code> instead of the user's filename?</summary><p>Filenames clash (everyone has a <code>data.csv</code>) and can contain unsafe characters. A generated ID is unique and safe.</p></details>
+      <details><summary>What would happen if a signed URL never expired?</summary><p>Anyone who got hold of the link could keep uploading or overwriting files forever. Short expiry limits the damage.</p></details>
+      <details><summary>The browser already checks file size. Why does the backend check again?</summary><p>Browser code can be changed or skipped by the user. Only checks on the server can be trusted.</p></details>
+    </div>
+  </section>
+
+</main>
