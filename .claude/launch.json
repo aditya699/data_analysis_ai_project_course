@@ -4,17 +4,30 @@
     {
       "name": "frontend",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "Lecture50_Claude_code3/frontend"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "Lecture50_Claude_code3/frontend"
+      ],
       "port": 5173
     },
     {
       "name": "backend",
-      "runtimeExecutable": "py",
+      "runtimeExecutable": "Lecture50_Claude_code3/backend/venv/Scripts/python.exe",
       "runtimeArgs": [
-        "-3.13", "-m", "uvicorn", "app.main:app",
-        "--app-dir", "Lecture50_Claude_code3/backend",
-        "--reload", "--reload-dir", "Lecture50_Claude_code3/backend",
-        "--host", "127.0.0.1", "--port", "8010"
+        "-m",
+        "uvicorn",
+        "app.main:app",
+        "--app-dir",
+        "Lecture50_Claude_code3/backend",
+        "--reload",
+        "--reload-dir",
+        "Lecture50_Claude_code3/backend",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8010"
       ],
       "port": 8010
     }

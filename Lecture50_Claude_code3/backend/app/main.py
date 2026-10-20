@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.dependencies import get_blob_storage
-from app.routes import health, uploads
+from app.routes import analysis, health, uploads
 
 
 @asynccontextmanager
@@ -26,3 +26,4 @@ app.add_middleware(
 
 app.include_router(health.router)
 app.include_router(uploads.router)
+app.include_router(analysis.router)

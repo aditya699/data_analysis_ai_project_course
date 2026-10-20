@@ -2,3 +2,9 @@ fastapi>=0.115
 uvicorn[standard]>=0.30
 pydantic-settings>=2.4
 azure-storage-blob>=12.20
+anthropic 
+pandas
+anthropic 
+openpyxlanthropic>=0.70
+pandas>=2.2
+openpyxl>=3.1         # .xlsx support for pandas

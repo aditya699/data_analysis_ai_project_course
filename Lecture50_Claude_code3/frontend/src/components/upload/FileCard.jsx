@@ -5,10 +5,14 @@ import './FileCard.css'
 const STATUS_LABELS = { idle: 'Ready', uploading: 'Uploading', uploaded: 'Uploaded' }
 
 // Shows the selected file, upload progress and the next action.
-export default function FileCard({ file, status, progress, onUpload, onRemove }) {
+export default function FileCard({
+  file, status, progress, planStatus, onUpload, onPlan, onRemove,
+}) {
   const extension = getFileExtension(file.name)
   const isUploading = status === 'uploading'
   const isUploaded = status === 'uploaded'
+  const isPlanning = planStatus === 'loading'
+  const hasPlan = planStatus === 'ready'
 
   return (
     <div className="file-card">
@@ -52,15 +56,14 @@ export default function FileCard({ file, status, progress, onUpload, onRemove })
         </button>
 
         {isUploaded ? (
-          // Wired to the backend agent in a later lecture
           <button
             type="button"
             className="btn btn-primary"
-            disabled
-            title="The analysis engine is connected in an upcoming lecture"
+            onClick={onPlan}
+            disabled={isPlanning || hasPlan}
           >
             <Icon name="sparkles" size={16} strokeWidth={2.2} />
-            Analyze with agent
+            {isPlanning ? 'Planning…' : hasPlan ? 'Plan ready' : 'Suggest analyses'}
           </button>
         ) : (
           <button
@@ -75,9 +78,11 @@ export default function FileCard({ file, status, progress, onUpload, onRemove })
         )}
       </div>
       <p className="file-card-note">
-        {isUploaded
-          ? 'Saved to cloud storage. Analysis engine coming soon.'
-          : 'Your file goes straight to secure cloud storage, not through our server.'}
+        {isPlanning
+          ? 'Reading your columns and asking the agent what to analyse. This takes a few seconds.'
+          : isUploaded
+            ? 'Saved to cloud storage.'
+            : 'Your file goes straight to secure cloud storage, not through our server.'}
       </p>
     </div>
   )

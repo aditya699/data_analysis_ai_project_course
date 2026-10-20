@@ -11,14 +11,26 @@ MAX_FILE_SIZE_MB = 100
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
 ALLOWED_EXTENSIONS = (".csv", ".xlsx")
 
-# Folder-like prefix inside the container for raw user uploads
-UPLOADS_PREFIX = "uploads"
+# Folder-like prefixes inside the container
+UPLOADS_PREFIX = "uploads"   # raw user files
+REPORTS_PREFIX = "reports"   # things we generate (profile.json, plan.json)
+
+# Dataset profile sent to the LLM
+PROFILE_SAMPLE_ROWS = 5      # example rows included in the prompt
+PROFILE_TOP_VALUES = 8       # most common values listed per categorical column
+CATEGORICAL_MAX_UNIQUE = 50  # text columns with <= this many distinct values are categories
+
+# Analysis plan
+PLAN_MAX_ITEMS = 10
+PROMPTS_DIR = BACKEND_DIR / "app" / "prompts"
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=BACKEND_DIR / ".env", extra="ignore")
 
     blob_storage_connection_string: str
+    anthropic_api_key: str
+    llm_model: str = "claude-opus-5-5"
     upload_container: str = "course-files"
     sas_expiry_minutes: int = 10
 

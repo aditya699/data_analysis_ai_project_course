@@ -6,6 +6,7 @@ from azure.core.exceptions import ResourceExistsError, ResourceNotFoundError
 from azure.storage.blob import (
     BlobSasPermissions,
     BlobServiceClient,
+    ContentSettings,
     CorsRule,
     generate_blob_sas,
 )
@@ -80,6 +81,20 @@ class BlobStorage:
             return self._container.get_blob_client(blob_name).get_blob_properties().size
         except ResourceNotFoundError:
             return None
+
+    def download_bytes(self, blob_name: str) -> bytes | None:
+        """Whole blob in memory (fine for now; see CLAUDE.md on large files)."""
+        try:
+            return self._container.get_blob_client(blob_name).download_blob().readall()
+        except ResourceNotFoundError:
+            return None
+
+    def upload_text(self, blob_name: str, text: str, content_type: str) -> None:
+        self._container.get_blob_client(blob_name).upload_blob(
+            text.encode("utf-8"),
+            overwrite=True,
+            content_settings=ContentSettings(content_type=content_type),
+        )
 
     def delete_blob(self, blob_name: str) -> None:
         try:

@@ -1,0 +1,52 @@
+.analysis-plan {
+  margin-top: 28px;
+}
+
+.analysis-plan-head {
+  margin-bottom: 14px;
+}
+
+.analysis-plan-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.analysis-plan-summary {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.analysis-plan-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+/* Placeholder for the next card while Claude is still writing */
+.analysis-plan-skeleton {
+  height: 132px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, var(--surface-muted) 0%, var(--surface) 50%, var(--surface-muted) 100%);
+  background-size: 200% 100%;
+  animation: analysis-plan-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes analysis-plan-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .analysis-plan-skeleton {
+    animation: none;
+  }
+}
